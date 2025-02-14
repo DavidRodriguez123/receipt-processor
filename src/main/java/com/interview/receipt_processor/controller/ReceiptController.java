@@ -37,11 +37,11 @@ public class ReceiptController {
     @ApiResponses({
             @ApiResponse(
                     responseCode = "201",
-                    description = "Receipt processed successfully, returning a unique receipt ID."
+                    description = "Returns the ID assigned to the receipt."
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Invalid receipt data. Ensure all required fields are provided.",
+                    description = "The receipt is invalid. Please verify input.",
                     content = @Content(
                             schema = @Schema(implementation = ErrorResponseDto.class)
                     )
@@ -54,10 +54,10 @@ public class ReceiptController {
                     )
             )
     })
-    @PostMapping("/create")
-    public ResponseEntity<Map<String, Long>> createPointId(@Valid @RequestBody Receipt receipt) {
-        Long receiptId = iReceiptService.createPointsId(receipt);
-        return ResponseEntity.status(201).body(Map.of("id", receiptId));
+    @PostMapping("/process")
+    public ResponseEntity<Map<String, String>> processReceipt(@Valid @RequestBody Receipt receipt) {
+        String receiptId = iReceiptService.createPointsId(receipt);
+        return ResponseEntity.ok(Map.of("id", receiptId));
     }
 
     @Operation(
@@ -67,11 +67,11 @@ public class ReceiptController {
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Receipt ID processed successfully, returning points processed."
+                    description = "Returns the number of points awarded."
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Invalid ID entered.",
+                    description = "No receipt found for that ID.",
                     content = @Content(
                             schema = @Schema(implementation = ErrorResponseDto.class)
                     )
@@ -85,12 +85,15 @@ public class ReceiptController {
             )
     })
     @GetMapping("/{id}/points")
-    public ResponseEntity<Map<String, Double>> getPoints(@Valid @PathVariable Long id) {
+    public ResponseEntity<Map<String, Integer>> getPoints(@PathVariable String id) {
         Double points = iReceiptService.getPointsById(id);
 
         if (points == null) {
-            throw new ResourceNotFoundException("Invalid receipt ID: " + id);
+            throw new ResourceNotFoundException("No receipt found for that ID.");
         }
 
-        return ResponseEntity.ok(Map.of("points", points));}
+        int roundedPoints = points.intValue();
+
+        return ResponseEntity.ok(Map.of("points", roundedPoints));
+    }
 }

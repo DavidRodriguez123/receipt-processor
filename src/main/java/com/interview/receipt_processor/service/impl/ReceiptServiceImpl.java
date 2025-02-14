@@ -7,15 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class ReceiptServiceImpl implements IReceiptService {
     private static final Logger logger = LoggerFactory.getLogger(ReceiptServiceImpl.class);
-    private final Map<Long, Double> receiptStore = new HashMap<>(); //  Stores data in memory
+    private final Map<String, Double> receiptStore = new HashMap<>(); //  Stores data in memory
 
     // Constants for Calculation Numbers
     private static final int BONUS_FULL_DOLLAR_AMOUNT = 50;
@@ -25,24 +22,23 @@ public class ReceiptServiceImpl implements IReceiptService {
     private static final double ITEM_BONUS_PERCENTAGE = 0.2;
 
     @Override
-    public Long createPointsId(Receipt receipt) {
+    public String createPointsId(Receipt receipt) {
         if (!isValidReceipt(receipt)) {
-            throw new IllegalArgumentException("Invalid receipt data");
+            throw new IllegalArgumentException("Invalid receipt data. Please verify input.");
         }
 
-        long randomReceiptId = 1000000000L + new Random().nextInt(900000000);
+        String receiptId = UUID.randomUUID().toString();
         double points = calculatePoints(receipt);
 
-        logger.info("Receipt ID: {} earned {} points", randomReceiptId, points);
-        receiptStore.put(randomReceiptId, points);
+        logger.info("Generated Receipt ID: {} with {} points", receiptId, points);
+        receiptStore.put(receiptId, points);
 
-        return randomReceiptId;
+        return receiptId; // ✅ Return String ID instead of Long
     }
 
-    public Double getPointsById(Long id) {
+    public Double getPointsById(String id) {
         return receiptStore.getOrDefault(id,null);
     }
-
 
     private boolean isValidReceipt(Receipt receipt) {
         return receipt.getRetailer() != null && !receipt.getRetailer().isEmpty()
@@ -51,6 +47,7 @@ public class ReceiptServiceImpl implements IReceiptService {
                 && receipt.getItems() != null && !receipt.getItems().isEmpty()
                 && receipt.getTotal() != null && receipt.getTotal().matches("\\d+\\.\\d{2}");
     }
+
     private double calculatePoints(Receipt receipt) {
         double points = 0;
         logger.info("Calculating points for receipt from {}", receipt.getRetailer());
