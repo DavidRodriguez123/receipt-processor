@@ -1,0 +1,103 @@
+# ==========================
+# Java / Maven / Gradle Files
+# ==========================
+
+# Ignore compiled Java files
+*.class
+
+# Ignore log files
+*.log
+logs/
+log/
+!src/main/resources/logback.xml # Allow logging config
+
+# Ignore Maven/Gradle generated files
+target/
+build/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Ignore Maven Wrapper files (except the JAR)
+.mvn/
+!mvnw
+!mvnw.cmd
+
+# Ignore JAR/WAR files
+*.jar
+*.war
+*.ear
+
+# Ignore IntelliJ IDEA specific files
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Ignore STS (Spring Tool Suite) specific files
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# Ignore Eclipse IDE specific files
+.metadata/
+bin/
+tmp/
+*.swp
+*.swo
+
+# Ignore NetBeans IDE files
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Ignore VS Code specific files
+.vscode/
+
+# ==========================
+# Operating System Files
+# ==========================
+
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# Linux swap files
+*.swp
+*.swo
+
+# ==========================
+# Security & Config Files
+# ==========================
+
+# Ignore environment config files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env*.local
+
+# Ignore sensitive application properties
+application.properties
+application.yml
+application-test.properties
+application-dev.properties
+application-prod.properties
+
+# Ignore database & cache files
+*.h2.db
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# Ignore Lombok config (Optional)
+lombok.config
