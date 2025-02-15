@@ -11,7 +11,7 @@ This is a Spring Boot-based REST API that processes receipts and assigns points 
 
 📌 Prerequisites:
 Before running the project, make sure you have the following installed:
-**Java 17 **
+**Java 17**
 **Maven** 
 
 🔧 Installation:
