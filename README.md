@@ -15,20 +15,20 @@ Before running the project, make sure you have the following installed:
 ✅ Maven 
 
 🔧 Installation
-1️⃣ Clone the Repository
+Clone the Repository
 git clone https://github.com/YOUR-USERNAME/receipt-processor.git
 cd receipt-processor
 
 🚀 Running the Application
-2️⃣ Build the Project
+Build the Project
 Run the following command to download dependencies and compile the code:
 mvn clean install
-✅ Expected output:
+ Expected output:
 [INFO] BUILD SUCCESS
-3️⃣ Run the Application
+Run the Application
 Start the Spring Boot application using:
 mvn spring-boot:run
-✅ Expected output:
+Expected output:
 Started ReceiptProcessorApplication in X seconds
 The API is now running at:
 http://localhost:8080
