@@ -22,25 +22,25 @@ cd receipt-processor
 🚀 Running the Application:
 Build the Project
 Run the following command to download dependencies and compile the code:
-mvn clean install
+**mvn clean install**
  
 Run the Application
 Start the Spring Boot application using:
-mvn spring-boot:run
+**mvn spring-boot:run**
 
 The API is now running at:
-http://localhost:8080
+**http://localhost:8080**
 
 📌 API Endpoints:
 📍 1. Submit a Receipt (POST /receipts/process)
-http://localhost:8080/receipts/process
+**http://localhost:8080/receipts/process**
 📍 2. Get Points for a Receipt (GET /receipts/{id}/points)
-http://localhost:8080/receipts/{id}/points"
+**http://localhost:8080/receipts/{id}/points"**
 
 📖 API Documentation:
 This project includes Swagger UI for easy API testing.
 Once the app is running, open Swagger UI in your browser:
-http://localhost:8080/swagger-ui/index.html
+**http://localhost:8080/swagger-ui/index.html**
 
 🛠️ Building & Running as a JAR:
 To build and package your Spring Boot application into a JAR file, run:
