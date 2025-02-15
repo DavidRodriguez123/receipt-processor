@@ -33,7 +33,7 @@ public class ReceiptServiceImpl implements IReceiptService {
         logger.info("Generated Receipt ID: {} with {} points", receiptId, points);
         receiptStore.put(receiptId, points);
 
-        return receiptId; // ✅ Return String ID instead of Long
+        return receiptId;
     }
 
     public Double getPointsById(String id) {
