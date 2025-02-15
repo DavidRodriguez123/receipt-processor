@@ -23,13 +23,11 @@ cd receipt-processor
 Build the Project
 Run the following command to download dependencies and compile the code:
 mvn clean install
- Expected output:
-[INFO] BUILD SUCCESS
+ 
 Run the Application
 Start the Spring Boot application using:
 mvn spring-boot:run
-Expected output:
-Started ReceiptProcessorApplication in X seconds
+
 The API is now running at:
 http://localhost:8080
 
